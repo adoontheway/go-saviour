@@ -25,8 +25,13 @@ import (
 
 func init() {
 	initMongoDriver()
+	InitCache()
+
 }
 
 func initMongoDriver() {
+	DB = &Database{
+		Mongo: SetConnect(),
+	}
 
 }

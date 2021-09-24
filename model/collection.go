@@ -88,7 +88,7 @@ type User struct {
 	NickName           string             `bson:"nickname,omitempty"`
 	Password           string             `bson:"password,omitempty"`
 	Avatar             int64              `bson:"avatar"`
-	Phone              int64              `bson:"phone,omitempty"`
+	Phone              string             `bson:"phone,omitempty"`
 	Email              string             `bson:"email,omitempty"`
 	EmailVerifyAT      string             `bson:"email_verify_at,omitempty"` // vlog system
 	Introduction       int64              `bson:"introduction,omitempty"`

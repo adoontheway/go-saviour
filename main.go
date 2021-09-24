@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	r := gin.Default()
 	r.GET("/", ctrl.Index)
 	r.GET("/users", ctrl.UserInfo)

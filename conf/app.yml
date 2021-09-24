@@ -1,0 +1,8 @@
+mongodb:
+  host: mongo://127.0.0.1:27017
+  username: test001
+  password: 54321
+  timeout: 10000
+  maxpoolsize: 10
+  heartbeat: 5000
+

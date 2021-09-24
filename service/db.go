@@ -11,14 +11,21 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+var (
+	DB *Database
+)
+
 type Database struct {
 	Mongo *mongo.Client
 }
 
-var DB *Database
+func Init() {
+	DB = &Database{
+		Mongo: SetConnect("mongo://127.0.0.1:27017/test "),
+	}
+}
 
-func SetConnect() *mongo.Client {
-	uri := ""
+func SetConnect(uri string) *mongo.Client {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
