@@ -1,6 +1,7 @@
 package ctrl
 
 import (
+	"coward-saviour/mock"
 	"coward-saviour/util"
 
 	"github.com/gin-gonic/gin"
@@ -8,18 +9,30 @@ import (
 
 func Dynamic(c *gin.Context) {
 	c.Request.ParseForm()
-
-	util.RespOk(c.Writer, nil, "")
+	dynamic := mock.Mock.GetDynamicList()
+	util.GinResp(c, 200, dynamic, "")
 }
+
+func DynamicThumb(c *gin.Context) {
+	c.Request.ParseForm()
+	dynamic := mock.Mock.GetDynamicList()
+	util.GinResp(c, 200, dynamic, "")
+}
+func DynamicCollect(c *gin.Context) {
+	c.Request.ParseForm()
+	dynamic := mock.Mock.GetDynamicList()
+	util.GinResp(c, 200, dynamic, "")
+}
+
 func DynamicCreate(c *gin.Context) {
 	c.Request.ParseForm()
 
 	util.RespOk(c.Writer, nil, "")
 }
-func DynamicSave(c *gin.Context) {
+func DynamicInfo(c *gin.Context) {
 	c.Request.ParseForm()
 
-	util.RespOk(c.Writer, nil, "")
+	util.GinResp(c, 200, mock.Mock.GetDynamicDetail(), "")
 }
 func DynamicEdit(c *gin.Context) {
 	c.Request.ParseForm()

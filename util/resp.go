@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type H struct {
@@ -12,6 +14,12 @@ type H struct {
 	Data  interface{} `json:"data,omitempty"`
 	Rows  interface{} `json:"rows,omitempty"`
 	Total interface{} `json:"total,omitempty"`
+}
+
+func GinResp(c *gin.Context, code int, data interface{}, msg string) {
+	// log.Println(c.Writer.Header())
+	c.JSON(code, data)
+	// log.Println(c.Writer.Header())
 }
 
 func Resp(w http.ResponseWriter, code int, data interface{}, msg string) {

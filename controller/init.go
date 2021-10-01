@@ -6,6 +6,6 @@ import (
 
 func init() {
 	os.MkdirAll("./mnt", os.ModePerm)
-	go udprecvproc()
-	go udpsendproc()
+	// go udprecvproc()
+	// go udpsendproc()
 }

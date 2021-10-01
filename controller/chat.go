@@ -1,6 +1,7 @@
 package ctrl
 
 import (
+	"coward-saviour/service"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -69,6 +70,7 @@ type Node struct {
 
 var clientMap map[int64]*Node = make(map[int64]*Node)
 var rwlocker sync.RWMutex
+var userService service.UserService
 
 func Chat(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
