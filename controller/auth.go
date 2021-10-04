@@ -34,11 +34,15 @@ func SendLoginCodes(c *gin.Context) {
 	// service.Cache.Set(key, []byte(data))
 }
 
-func LoginByCode(c *gin.Context) {
+func Logout(c *gin.Context) {
 
+}
+
+func LoginByCode(c *gin.Context) {
 	c.Request.ParseForm()
 	verification_code, _ := c.GetPostForm("verification_code")
-	log.Println("verify code", verification_code)
+	verification_key, _ := c.GetPostForm("verification_key")
+	log.Println("verify info:", verification_code, verification_key)
 
 	// sendSms(code)
 	// key := util.RandomString(15)

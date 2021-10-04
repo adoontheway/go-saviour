@@ -19,7 +19,7 @@ type Database struct {
 	Mongo *mongo.Client
 }
 
-func Init() {
+func InitMongo() {
 	DB = &Database{
 		Mongo: SetConnect("mongo://127.0.0.1:27017/test "),
 	}

@@ -27,13 +27,13 @@ func (s *UserService) Register(mobile, plainpwd, nickname, avatar, sex string) (
 		return tmp, errors.New("手机号已经注册")
 	}
 	//else do register process
-	tmp.Mobile = mobile
+	tmp.Phone = mobile
 	tmp.Avatar = avatar
 	tmp.Nickname = nickname
 	tmp.Salt = fmt.Sprintf("%6d", rand.Int31n(10000))
 	tmp.Sex = sex
-	tmp.Passwd = util.MakePasswd(plainpwd, tmp.Salt)
-	tmp.Createat = time.Now()
+	tmp.Password = util.MakePasswd(plainpwd, tmp.Salt)
+	tmp.CreatedAt = time.Now()
 	// 可以是一个随机数
 	tmp.Token = fmt.Sprintf("%08d", rand.Int31n(10000000))
 	// InsertOne
@@ -59,7 +59,7 @@ func (s *UserService) Login(mobile, plainpwd string) (user model.User, err error
 		return tmp, errors.New("用户不存在")
 	}
 	// Compare password
-	if !util.ValidatePasswd(plainpwd, tmp.Salt, tmp.Passwd) {
+	if !util.ValidatePasswd(plainpwd, tmp.Salt, tmp.Password) {
 		return tmp, errors.New("密码不正确")
 	}
 	// Refresh token
@@ -74,6 +74,10 @@ func (s *UserService) Find(userId int64) (user model.User) {
 	tmp := model.User{}
 	DbEngin.ID(userId).Get(&tmp)
 	return tmp
+}
+
+func (s *UserService) Exsits(phone string) (bool, error) {
+	return DbEngin.Exist(&model.User{Phone: phone})
 }
 
 func (s *UserService) LoginCodes(mobile string) (codes string, err error) {

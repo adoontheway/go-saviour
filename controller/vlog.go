@@ -6,6 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func UploadImg(c *gin.Context) {
+	util.GinResp(c, 200, nil, "")
+}
+func UploadFiles(c *gin.Context) {
+	util.GinResp(c, 200, nil, "")
+}
+
 func VLogs(c *gin.Context) {
 	c.Request.ParseForm()
 

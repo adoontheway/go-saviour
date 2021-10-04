@@ -1,6 +1,7 @@
 package main
 
 import (
+	constants "coward-saviour/const"
 	ctrl "coward-saviour/controller"
 	"log"
 	"net/http"
@@ -30,34 +31,37 @@ func main() {
 	// r.Use(gin.Recovery())
 
 	r.GET("/", ctrl.Index)
-	r.GET("/users", ctrl.UserInfo)
-	r.POST("/loginCodes", ctrl.SendLoginCodes)
-	r.POST("/loginByCode", ctrl.LoginByCode)
 
-	r.GET("/dynamics", ctrl.Dynamic)
-	r.GET("/dynamics/create", ctrl.DynamicCreate)
-	r.POST("/dynamics", ctrl.DynamicInfo)
-	r.GET("/dynamics/{id}/edit", ctrl.DynamicEdit)
-	r.PUT("/dynamics/{id}/", ctrl.DynamicUpdate)
-	r.GET("/dynamics/{id}", ctrl.DynamicShow)
+	r.POST(constants.LoginCodes, ctrl.SendLoginCodes)
+	r.POST(constants.LoginByCode, ctrl.LoginByCode)
+	r.POST(constants.UserLogout, ctrl.Logout)
+	r.GET(constants.UserInfo, ctrl.UserInfo)
 
-	r.POST("/dynamics/thumb", ctrl.DynamicThumb)
-	r.POST("/dynamics/collect", ctrl.DynamicCollect)
-	r.GET("/dcomments", ctrl.DComments)
+	r.POST(constants.UploadAvatar, ctrl.UploadAvatar)
+	r.POST(constants.UploadFile, ctrl.UploadFiles)
+	r.POST(constants.UploadImage, ctrl.UploadImg)
+	r.GET(constants.DynamicComment, ctrl.DComments)
 
-	r.GET("/comments", ctrl.Comments)
-	r.GET("/comments/create", ctrl.CommentCreate)
-	r.POST("/comments", ctrl.CommentSave)
-	r.GET("/comments/{id}/edit", ctrl.CommentEdit)
-	r.PUT("/comments/{id}/", ctrl.CommentUpdate)
-	r.GET("/comments/{id}", ctrl.CommentShow)
+	r.GET(constants.DynamicList, ctrl.Dynamic)
+	r.POST(constants.ThumbDynamic, ctrl.DynamicThumb)
+	r.POST(constants.CollectDynamic, ctrl.DynamicCollect)
+	r.GET(constants.PublishDynamic, ctrl.DynamicPublish)
+	r.POST(constants.DynamicList, ctrl.DynamicInfo)
 
-	r.GET("/vlogs", ctrl.VLogs)
-	r.GET("/vlogs/create", ctrl.VLogCreate)
-	r.POST("/vlogs", ctrl.VLogSave)
-	r.GET("/vlogs/{id}/edit", ctrl.VLogEdit)
-	r.PUT("/vlogs/{id}/", ctrl.VLogUpdate)
-	r.GET("/vlogs/{id}", ctrl.VLogShow)
+	r.GET(constants.Comment, ctrl.Comments)
+	r.POST(constants.Comment, ctrl.PubComment)
+
+	r.POST(constants.InitMessage, ctrl.InitMessage)
+	r.POST(constants.MessageList, ctrl.MessageList)
+	r.POST(constants.SendMessage, ctrl.SendMessage)
+	r.GET(constants.RecordMessage, ctrl.RecordMessage)
+	r.POST(constants.MessageStatus, ctrl.MessageStatus)
+	r.POST(constants.ReadMessage, ctrl.ReadMessage)
+	r.POST(constants.MessageWindow, ctrl.MessageWindow)
+	r.POST(constants.VideoMessage, ctrl.VideoMessage)
+	r.POST(constants.VideoMessageCallback, ctrl.VideoMessageCallback)
+	r.POST(constants.MessageReadCallback, ctrl.MessageReadCallback)
+
 	r.StaticFS("/assets", http.Dir("assets"))
 
 	r.Run(":8080")

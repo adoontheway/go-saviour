@@ -16,3 +16,7 @@ func UserInfo(c *gin.Context) {
 	result["data"] = mock.Mock.GetMe()
 	util.GinResp(c, 200, result, "")
 }
+
+func UploadAvatar(c *gin.Context) {
+	util.GinResp(c, 200, nil, "")
+}

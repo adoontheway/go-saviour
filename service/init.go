@@ -13,7 +13,8 @@ var DbEngin *xorm.Engine
 
 func initMysqlDriver() {
 	drivername := "mysql"
-	DsName := "root:12345@(127.0.0.1:3306)/chat?charset=utf8"
+	DsName := "cw_test:test12345@(127.0.0.1:3306)/test_cw?charset=utf8&serverTimezone=GMT&autoReconnect=true&useUnicode=true"
+	// DsName := "root:12345@(127.0.0.1:3306)/chat?charset=utf8"
 	var err error
 	DbEngin, err = xorm.NewEngine(drivername, DsName)
 	if err != nil {
@@ -28,11 +29,12 @@ func initMysqlDriver() {
 	fmt.Println("init database ok")
 }
 
-// func init() {
-// 	initMongoDriver()
-// 	InitCache()
-
-// }
+func init() {
+	// initMongoDriver()
+	// InitCache()
+	initMysqlDriver()
+	InitRedis()
+}
 
 // func initMongoDriver() {
 // 	DB = &Database{

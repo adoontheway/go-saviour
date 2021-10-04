@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	me            *model.DUser
+	me            *model.User
 	dynamicList   *model.DynamicListEntity
 	dcomments     *model.DynamicCommentEntity
 	dynamicDetail *model.DynamicDetailEntity
@@ -17,18 +17,18 @@ type MockCenter struct {
 }
 
 func (m *MockCenter) Init() {
-	me = &model.DUser{
-		Id:            1,
-		Username:      "test001",
-		Nickname:      "test001",
-		CreatedAt:     time.Now().String(),
-		UpdatedAt:     time.Now().String(),
-		Email:         "123@163.com",
-		Phone:         "13500000000",
-		Status:        0,
-		Introduction:  "我是一条酸菜鱼，又酸又菜又多余...",
-		RememberToken: "12345678",
-		Avatar:        "http://localhost:8080/assets/header01.png",
+	me = &model.User{
+		Id:           1,
+		Username:     "test001",
+		Nickname:     "test001",
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
+		Email:        "123@163.com",
+		Phone:        "13500000000",
+		Status:       0,
+		Introduction: "我是一条酸菜鱼，又酸又菜又多余...",
+		Token:        "12345678",
+		Avatar:       "http://localhost:8080/assets/header01.png",
 	}
 
 	dynamicList = &model.DynamicListEntity{
@@ -197,7 +197,7 @@ func (m *MockCenter) Init() {
 
 }
 
-func (m *MockCenter) GetMe() *model.DUser {
+func (m *MockCenter) GetMe() *model.User {
 
 	return me
 }
