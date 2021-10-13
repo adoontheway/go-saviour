@@ -3,6 +3,7 @@ package ctrl
 import (
 	"coward-saviour/mock"
 	"coward-saviour/util"
+	"fmt"
 	"log"
 	"time"
 
@@ -10,9 +11,19 @@ import (
 )
 
 func SendLoginCodes(c *gin.Context) {
-	log.Println(c.PostForm("phone"))
+	// phone := c.PostForm("phone")
+	// log.Println(c.PostForm("phone"))
+	key := fmt.Sprintf("verificationCode_%s", util.RandomString(15))
+
+	// service.RedisCache.Set(key, [string]string{
+	// 	key: {
+	// 		"phone": phone,
+	// 		"code":  "1234",
+	// 	},
+	// }, time.Minute*5)
+
 	result := make(map[string]interface{})
-	result["key"] = "1234"
+	result["key"] = key
 	result["expired_at"] = time.Now().Add(time.Minute * 5)
 	util.GinResp(c, 200, result, "")
 	// phone := c.Params.ByName("phone")
@@ -51,7 +62,7 @@ func LoginByCode(c *gin.Context) {
 	result["data"] = mock.Mock.GetMe()
 	result["access_token"] = expire_at.String()
 	result["token_type"] = "Bearer"
-	result["expired_in"] = time.Now().Add(time.Hour * 24)
+	result["expired_in"] = time.Now().Add(time.Hour * 24).Format("2006-02-02 11:22:33")
 
 	util.GinResp(c, 200, result, "")
 	// todo save {key:{phone,code},expireTime} to cache server

@@ -3,6 +3,7 @@ package main
 import (
 	constants "coward-saviour/const"
 	ctrl "coward-saviour/controller"
+	"coward-saviour/util"
 	"log"
 	"net/http"
 	"time"
@@ -12,6 +13,7 @@ import (
 )
 
 func main() {
+	print(util.GetIp4Addr())
 
 	r := gin.Default()
 	//cors middleware
@@ -63,6 +65,8 @@ func main() {
 	r.POST(constants.MessageReadCallback, ctrl.MessageReadCallback)
 
 	r.StaticFS("/assets", http.Dir("assets"))
+	// r.StaticFS("/mnt", http.Dir("mnt"))
+	r.GET(constants.WebSocket, ctrl.WS)
 
 	r.Run(":8080")
 

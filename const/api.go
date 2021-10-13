@@ -26,4 +26,6 @@ const (
 	VideoMessage         = "messages/video"
 	VideoMessageCallback = "messages/videoCallback"
 	MessageReadCallback  = "messages/readCallback"
+
+	WebSocket = "ws"
 )

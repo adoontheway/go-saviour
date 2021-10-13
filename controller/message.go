@@ -1,6 +1,7 @@
 package ctrl
 
 import (
+	"coward-saviour/mock"
 	"coward-saviour/util"
 
 	"github.com/gin-gonic/gin"
@@ -10,9 +11,12 @@ func InitMessage(c *gin.Context) {
 	util.GinResp(c, 200, nil, "")
 }
 func MessageList(c *gin.Context) {
-	util.GinResp(c, 200, nil, "")
+	result := make(map[string]interface{})
+	result["data"] = mock.Mock.GetMessageList()
+	util.GinResp(c, 200, mock.Mock.GetMessageList(), "")
 }
 func RecordMessage(c *gin.Context) {
+	//todo
 	util.GinResp(c, 200, nil, "")
 }
 func SendMessage(c *gin.Context) {

@@ -2,6 +2,8 @@ package mock
 
 import (
 	"coward-saviour/model"
+	"coward-saviour/util"
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -11,12 +13,14 @@ var (
 	dynamicList   *model.DynamicListEntity
 	dcomments     *model.DynamicCommentEntity
 	dynamicDetail *model.DynamicDetailEntity
+	messageList   *model.MessageListEntity
 )
 
 type MockCenter struct {
 }
 
 func (m *MockCenter) Init() {
+	localAddr := util.GetIp4Addr()
 	me = &model.User{
 		Id:           1,
 		Username:     "test001",
@@ -28,7 +32,7 @@ func (m *MockCenter) Init() {
 		Status:       0,
 		Introduction: "我是一条酸菜鱼，又酸又菜又多余...",
 		Token:        "12345678",
-		Avatar:       "http://localhost:8080/assets/header01.png",
+		Avatar:       fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 	}
 
 	dynamicList = &model.DynamicListEntity{
@@ -49,7 +53,7 @@ func (m *MockCenter) Init() {
 					Id:                2,
 					Username:          "text002",
 					Nickname:          "test002",
-					Avatar:            "http://localhost:8080/assets/header01.png",
+					Avatar:            fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 					Email:             "133@163.com",
 					Introduction:      "hehehehehhehe....",
 					NotificationCount: 10,
@@ -62,27 +66,27 @@ func (m *MockCenter) Init() {
 						UserId:    2,
 						DynamicId: 10001,
 						Type:      "image",
-						Path:      "http://localhost:8080/assets/header01.png",
+						Path:      fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 					},
 				},
 			},
 		},
 		Links: model.DynamicListLink{
-			First: "http://localhost:8080/assets/header01.png",
-			Last:  "http://localhost:8080/assets/header01.png",
-			Next:  "http://localhost:8080/assets/header01.png",
+			First: fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
+			Last:  fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
+			Next:  fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 		},
 		Meta: model.DynamicListMeta{
 			CurrentPage: 1,
 			From:        1,
 			LastPage:    1,
-			Path:        "http://localhost:8080/assets/header01.png",
+			Path:        fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 			PerPage:     "123",
 			To:          2,
 			Total:       10,
 			Links: []model.DynamicListMetaLink{
 				model.DynamicListMetaLink{
-					Url:    "http://localhost:8080/assets/header01.png",
+					Url:    fmt.Sprintf("http://%s:8080/assets/header01.png", localAddr),
 					Label:  "beauty",
 					Active: true,
 				},
@@ -96,7 +100,7 @@ func (m *MockCenter) Init() {
 				Id:               100001,
 				ReplierId:        3,
 				ReplierNicknam:   "张三",
-				ReplierAvatar:    "http://localhost:8080/assets/header02.png",
+				ReplierAvatar:    fmt.Sprintf("http://%s:8080/assets/header02.png", localAddr),
 				ReceiverId:       4,
 				ReceiverNickname: "nidaye",
 				ThumbCount:       rand.Uint32() % 9999,
@@ -108,7 +112,7 @@ func (m *MockCenter) Init() {
 				Id:               100002,
 				ReplierId:        3,
 				ReplierNicknam:   "里斯",
-				ReplierAvatar:    "http://localhost:8080/assets/header04.png",
+				ReplierAvatar:    fmt.Sprintf("http://%s:8080/assets/header04.png", localAddr),
 				ReceiverId:       4,
 				ReceiverNickname: "nidaye",
 				ThumbCount:       rand.Uint32() % 9999,
@@ -118,10 +122,10 @@ func (m *MockCenter) Init() {
 			},
 		},
 		Links: model.DynamicCommentLink{
-			First: "http://localhost:8080/assets/post/post01.jpg",
-			Last:  "http://localhost:8080/assets/post/post04.jpg",
-			Prev:  "http://localhost:8080/assets/post/post02.jpg",
-			Next:  "http://localhost:8080/assets/post/post03.jpg",
+			First: fmt.Sprintf("http://%s:8080/assets/post/post01.jpg", localAddr),
+			Last:  fmt.Sprintf("http://%s:8080/assets/post/post04.jpg", localAddr),
+			Prev:  fmt.Sprintf("http://%s:8080/assets/post/post02.jpg", localAddr),
+			Next:  fmt.Sprintf("http://%s:8080/assets/post/post03.jpg", localAddr),
 		},
 		Meta: model.DynamicCommentMeta{
 			CurrentPage: 1,
@@ -133,17 +137,17 @@ func (m *MockCenter) Init() {
 			Total:       10,
 			Links: []model.DynamicCommentMetaLink{
 				model.DynamicCommentMetaLink{
-					Url:    "http://localhost:8080/assets/post/post03.jpg",
+					Url:    fmt.Sprintf("http://%s:8080/assets/post/post03.jpg", localAddr),
 					Label:  "Beauty",
 					Active: true,
 				},
 				model.DynamicCommentMetaLink{
-					Url:    "http://localhost:8080/assets/post/post05.jpg",
+					Url:    fmt.Sprintf("http://%s:8080/assets/post/post05.jpg", localAddr),
 					Label:  "Beauty",
 					Active: true,
 				},
 				model.DynamicCommentMetaLink{
-					Url:    "http://localhost:8080/assets/post/post06.jpg",
+					Url:    fmt.Sprintf("http://%s:8080/assets/post/post06.jpg", localAddr),
 					Label:  "Beauty",
 					Active: true,
 				},
@@ -168,7 +172,7 @@ func (m *MockCenter) Init() {
 				Id:                1,
 				Username:          "老痰涮菜",
 				Nickname:          "老痰涮菜",
-				Avatar:            "http://localhost:8080/assets/header03.png",
+				Avatar:            fmt.Sprintf("http://%s:8080/assets/header03.png", localAddr),
 				Email:             "gogogo@qq.com",
 				Introduction:      "这个人很懒，什么也没留下...",
 				NotificationCount: 10,
@@ -182,15 +186,39 @@ func (m *MockCenter) Init() {
 					UserId:    1,
 					DynamicId: 10001,
 					Type:      "image",
-					Path:      "http://localhost:8080/assets/post/post08.jpg",
+					Path:      fmt.Sprintf("http://%s:8080/assets/post/post08.jpg", localAddr),
 				},
 				model.DynamicDetailDataImage{
 					Id:        12,
 					UserId:    1,
 					DynamicId: 10001,
 					Type:      "image",
-					Path:      "http://localhost:8080/assets/post/post07.jpg",
+					Path:      fmt.Sprintf("http://%s:8080/assets/post/post07.jpg", localAddr),
 				},
+			},
+		},
+	}
+	messageList = &model.MessageListEntity{
+		Data: []model.MessageListData{
+			model.MessageListData{
+				Stranger: model.MessageListDataStranger{
+					Id:                1,
+					Username:          "lsp",
+					Nickname:          "lyb",
+					Online:            1,
+					Avatar:            fmt.Sprintf("http://%s:8080/assets/header0%d.png", localAddr, rand.Int31()%9+1),
+					CreatedAt:         time.Now().Format("2006-09-08 11:12:13"),
+					UpdatedAt:         time.Now().Format("2006-09-08 11:12:13"),
+					NotificationCount: 10,
+					Status:            2,
+				},
+				Count:     1,
+				Type:      "image",
+				Id:        1,
+				Excerpt:   "fgdfgdf",
+				Draft:     "fresh meat",
+				Createdat: time.Now().Format("2006-09-08 11:12:13"),
+				Updatedat: time.Now().Format("2006-09-08 11:12:13"),
 			},
 		},
 	}
@@ -212,4 +240,8 @@ func (m *MockCenter) GetDComments() *model.DynamicCommentEntity {
 
 func (m *MockCenter) GetDynamicDetail() *model.DynamicDetailEntity {
 	return dynamicDetail
+}
+
+func (m *MockCenter) GetMessageList() *model.MessageListEntity {
+	return messageList
 }

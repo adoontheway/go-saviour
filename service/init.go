@@ -10,6 +10,7 @@ import (
 )
 
 var DbEngin *xorm.Engine
+var RedisCache *red
 
 func initMysqlDriver() {
 	drivername := "mysql"
@@ -33,7 +34,7 @@ func init() {
 	// initMongoDriver()
 	// InitCache()
 	initMysqlDriver()
-	InitRedis()
+	RedisCache = InitRedis()
 }
 
 // func initMongoDriver() {

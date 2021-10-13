@@ -20,3 +20,14 @@ create user 'cw_test' identified by 'test12345';
 grant ALL privileges ON test_cw.* to 'cw_test'@'%';
 exit;
 ```
+
+### docker
+redis
+```sh
+docker run -v $PWD/conf/redis.conf:/usr/local/etc/redis/redis.conf -p 7001:6379 --name myredis redis redis-server /usr/local/etc/redis/redis.conf
+```
+
+mysql
+```sh
+docker run --name cs_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345 -d mysql
+```
